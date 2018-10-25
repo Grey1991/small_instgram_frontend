@@ -38,4 +38,26 @@ export default class API {
         return this.makeAPIRequest('me.json');
     }
 
+    login(u, p) {
+        const data = {'username': u, 'password': p}
+        return fetch(`${this.url}/auth/login`,{
+                                        body: JSON.stringify(data),
+                                        headers: {
+                                          'content-type': 'application/json'
+                                        },
+                                        method: 'POST'
+                                      });
+    }
+
+    signup(u, p, e, n) {
+        const data = {'username': u, 'password': p, 'email':e, 'name': n}
+        return fetch(`${this.url}/auth/signup`,{
+                                        body: JSON.stringify(data),
+                                        headers: {
+                                          'content-type': 'application/json'
+                                        },
+                                        method: 'POST'
+                                      });
+    }
+
 }
