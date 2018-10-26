@@ -1,1 +1,11 @@
-13/10/18     18:00   18:15   put the first real entry in diary.txt (delete this line!)
+22/10/18     14:00   15:00   Finish login of level 0
+22/10/18     15:00   16:00   Finish signup of level 0
+22/10/18     16:30   17:30   Fix bug of signup of level 0
+23/10/18     14:30   15:30   Finish feed of level 0
+23/10/18     15:30   16:30   Fix bug feed of level 0
+24/10/18     16:30   18:30   Coding login of level 1
+24/10/18     18:30   20:00   Debug and fix bugs of login of level 1
+25/10/18     20:30   23:30   Coding signup of level 1
+26/10/18     00:00   02:00   Debug and fix bugs of signup of level 1
+26/10/18     14:30   15:30   Coding post of level 1
+26/10/18     15:30   16:30   Test and fix bugs of post of level 1
