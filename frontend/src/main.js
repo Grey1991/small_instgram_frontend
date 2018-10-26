@@ -51,7 +51,29 @@ function errorAlert(resp) {
 	resp.json().then(data=>{alert(data.message)});
 }
 
-
+document.getElementById('postBtn').onclick = function() {
+	const d = document.getElementById('description_text').value;
+	const a = document.getElementById('file').value;
+	if(a == '') {
+		alert('please select an image')
+	} else if(d == '') {
+		alert('please input some description')
+	}
+	else {
+		const s = document.getElementById('uploadI').src;
+		const i = s.substring(s.indexOf('base64,')+('base64,'.length));
+		api.post(token, d, i).then(resp=>{
+			if(resp.status == 200) {
+				alert('success');
+				document.getElementById('file').value = '';
+				document.getElementById('description_text').value = '';
+				document.getElementById('postIMG').innerHTML = '';
+			} else {
+				errorAlert(resp);
+			}
+		})
+	}
+};
 
 // Potential example to upload an image
 const input = document.querySelector('input[type="file"]');

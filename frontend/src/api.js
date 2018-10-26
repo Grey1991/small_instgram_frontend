@@ -60,4 +60,15 @@ export default class API {
                                       });
     }
 
+    post(t, d, s) {
+        return fetch(`${this.url}/post`,{
+                                body: JSON.stringify({'description_text':d, 'src': s}),
+                                headers: {
+                                  'content-type': 'application/json',
+                                  'Authorization': 'token ' + t
+                                },
+                                method: 'POST'
+                              });
+    }
+
 }
