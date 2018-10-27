@@ -34,8 +34,14 @@ export default class API {
     /**
      * @returns auth'd user in json format
      */
-    getMe() {
-        return this.makeAPIRequest('me.json');
+    getMe(t) {
+        return fetch(`${this.url}/user`,{
+                                        headers: {
+                                          'content-type': 'application/json',
+                                          'Authorization': 'token ' + t
+                                        },
+                                        method: 'GET'
+                                      });
     }
 
     login(u, p) {

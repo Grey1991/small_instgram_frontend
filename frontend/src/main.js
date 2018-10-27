@@ -75,6 +75,23 @@ document.getElementById('postBtn').onclick = function() {
 	}
 };
 
+document.getElementById('profileBtn').onclick = function() {
+	api.getMe(token).then(resp=>{
+		if(resp.status == 200) {
+			resp.json().then(data=>{
+				document.getElementById('ue').innerHTML = data['username'];
+				document.getElementById('ne').innerHTML = data['name'];
+				document.getElementById('el').innerHTML = data['email'];
+				document.getElementById('fg').innerHTML = data['following'].length;
+				document.getElementById('fd').innerHTML = data['followed_num'];
+				document.getElementById('yt').innerHTML = data['posts'].length;
+			})
+		} else {
+			errorAlert(resp);
+		}
+	})
+}
+
 // Potential example to upload an image
 const input = document.querySelector('input[type="file"]');
 
