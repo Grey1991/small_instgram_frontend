@@ -1,5 +1,5 @@
 // change this when you integrate with the real API, or when u start using the dev server
-const API_URL = 'http://localhost:8080/data'
+const API_URL = 'http://127.0.0.1:8080/data'
 
 const getJSON = (path, options) => 
     fetch(path, options)
@@ -20,15 +20,21 @@ export default class API {
         this.url = url;
     } 
 
-    makeAPIRequest(path) {
-        return getJSON(`${this.url}/${path}`);
+    makeAPIRequest(path, options={}) {
+        return getJSON(`${this.url}/${path}`, options);
     }
 
     /**
      * @returns feed array in json format
      */
-    getFeed() {
-        return this.makeAPIRequest('feed.json');
+    getFeed(t, p, n) {
+        return fetch(`${this.url}/user/feed?p=`+p+'&n='+n,{
+                                        headers: {
+                                          'content-type': 'application/json',
+                                          'Authorization': 'token ' + t
+                                        },
+                                        method: 'GET'
+                                      });
     }
 
     /**
@@ -36,6 +42,16 @@ export default class API {
      */
     getMe(t) {
         return fetch(`${this.url}/user`,{
+                                        headers: {
+                                          'content-type': 'application/json',
+                                          'Authorization': 'token ' + t
+                                        },
+                                        method: 'GET'
+                                      });
+    }
+
+    getOther(t, uid) {
+        return fetch(`${this.url}/user?id=`+uid,{
                                         headers: {
                                           'content-type': 'application/json',
                                           'Authorization': 'token ' + t
@@ -63,6 +79,16 @@ export default class API {
                                           'content-type': 'application/json'
                                         },
                                         method: 'POST'
+                                      });
+    }
+
+    like(t, pid) {
+        return fetch(`${this.url}/post/like?id=`+pid,{
+                                        headers: {
+                                          'content-type': 'application/json',
+                                          'Authorization': 'token ' + t
+                                        },
+                                        method: 'PUT'
                                       });
     }
 
