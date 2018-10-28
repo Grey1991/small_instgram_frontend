@@ -40,7 +40,7 @@ export function createPostTile(post) {
     section.appendChild(createElement('h2', post.meta.author, { class: 'post-title' }));
 
     section.appendChild(createElement('img', null, 
-        { src: '/images/'+post.src, alt: post.meta.description_text, class: 'post-image' }));
+        { src: 'data:image/png;base64,'+post.src, alt: post.meta.description_text, class: 'post-image' }));
 
     return section;
 }
@@ -62,8 +62,9 @@ export function uploadImage(event) {
     reader.onload = (e) => {
         // do something with the data result
         const dataURL = e.target.result;
-        const image = createElement('img', null, { src: dataURL });
-        document.body.appendChild(image);
+        const image = createElement('img', null, { 'id':'uploadI', src: dataURL,style:"width: 80%" });
+        document.getElementById('postIMG').innerHTML = '';
+        document.getElementById('postIMG').appendChild(image);
     };
 
     // this returns a base64 image
